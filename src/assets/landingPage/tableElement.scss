@@ -1,5 +1,8 @@
 .table-element-container {
-    
+    margin : 10px;
+    background-color: greenyellow;
+    font-size: 15px;
+    position: relative;
 }
 .table-element-header {
     
@@ -11,5 +14,8 @@
     
 }
 .table-element-button {
-    
+    position: absolute;
+    right: 10px;
+    bottom : 10px;
+
 }

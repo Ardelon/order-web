@@ -1,6 +1,6 @@
 
 const createElement = (config) => {
-    const {id,classList = [], type = 'div',innerText,innerHTML, src, contentEditable,row, options,optionValues,multiple,size} = config
+    const {id,classList = [], type = 'div',innerText,innerHTML, src, contentEditable,row, options,optionValues,multiple,size, placeholder} = config
 
     const container = document.createElement(type);
     id              ? container.id = id                                                     : '';
@@ -12,6 +12,7 @@ const createElement = (config) => {
     row             ? container.row = row                                                   : '';
     multiple        ? container.multiple = multiple                                         : '';
     size            ? container.size = size                                                 : '';
+    placeholder     ? container.placeholder = placeholder                                   : '';
 
     if (options) {
         options.forEach((value, index) => {
