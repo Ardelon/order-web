@@ -6,6 +6,7 @@ import orderPage from './orderPage';
 import { landingPageConfig } from '../../config/landingPageConfig';
 import { getTagList } from '../../store/tagManagers';
 import tagGroup from '../components/tagGroup';
+import { getOrder } from '../../store/orderManagers';
 
 const tablePage = (table) => {
 
@@ -20,6 +21,7 @@ const tablePage = (table) => {
         tablePageHeaderAddOrderButtonConfig,
         tablePageHeaderStatusConfig,
         tablePageHeaderTotalPriceConfig,
+        tablePageHeaderRemainPriceConfig,
         tablePageHeaderDateConfig,
     } = tablePageConfig;
 
@@ -37,18 +39,46 @@ const tablePage = (table) => {
     const tablePageHeaderAddOrderButton = createElement(tablePageHeaderAddOrderButtonConfig);
     const tablePageHeaderStatus = createElement(tablePageHeaderStatusConfig);
     const tablePageHeaderTotalPrice = createElement(tablePageHeaderTotalPriceConfig);
+    const tablePageHeaderRemainPrice = createElement(tablePageHeaderRemainPriceConfig);
     const tablePageHeaderDate = createElement(tablePageHeaderDateConfig);
 
     tablePageHeaderText.innerText = table.name;
     tablePageHeaderTotalPrice.innerText = table.price;
     tablePageHeaderDate.innerText = table.date;
 
+    //#region //* Loading Information
+
     if (tagList) {
         tagList.forEach(tag => {
-            tablePageBody.appendChild(tagGroup(table.orderList, tag))
+            console.log(table.tagList, tag);
+            if (table.tagList.includes(tag)) {
+
+                tablePageBody.appendChild(tagGroup(table, tag))
+            } 
         });
     }
 
+    if (table.orderList && table.orderList.length) {
+        let totalPrice = 0;
+        let remainPrice = 0;
+        table.orderList.forEach(orderId => {
+            const order = getOrder(orderId)
+            totalPrice += Number(order.price);
+            if (order.status !== 'paid') {
+                remainPrice += Number(order.price);
+            }
+
+        });
+        tablePageHeaderTotalPrice.innerText = totalPrice;
+        tablePageHeaderRemainPrice.innerText = remainPrice;
+
+    }
+
+    
+
+
+
+    //#endregion
 
     //#endregion
 
@@ -90,6 +120,7 @@ const tablePage = (table) => {
     tablePageHeader.appendChild(tablePageHeaderAddOrderButton);
     tablePageHeader.appendChild(tablePageHeaderStatus);
     tablePageHeader.appendChild(tablePageHeaderTotalPrice);
+    tablePageHeader.appendChild(tablePageHeaderRemainPrice)
     tablePageHeader.appendChild(tablePageHeaderDate);
 
     tablePageContainer.appendChild(tablePageHeader);

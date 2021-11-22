@@ -7,6 +7,7 @@ export const tablePageConfig = {
     tablePageHeaderAddOrderButtonConfig : {classList : ["table-page-header-add-order-button"], type : 'button', innerText : 'Add Order'},
     tablePageHeaderStatusConfig : {classList : ["table-page-header-status"]},
     tablePageHeaderTotalPriceConfig : {classList : ["table-page-header-total-price"]},
+    tablePageHeaderRemainPriceConfig : {classList : ["table-page-header-remain-price"]},
     tablePageHeaderDateConfig : {classList : ["table-page-header-date"]},
 } 
 
@@ -15,6 +16,9 @@ export const orderElementConfig = {
     orderElementOrderNameConfig : {classList : ["order-element-order-name"]},
     orderElementPriceConfig : {classList : ["order-element-price"]},
     orderElementStatusConfig : {classList : ["order-element-status"]},
+    orderElementUpdateOrderButtonConfig : {classList : ["order-element-update-order"], type : 'button', innerText : 'Update Order'},
+    orderElementPayOrderButtonConfig : {classList : ["order-page-pay-order-button"], type : 'button', innerText : 'Pay Order'},
+    orderElementCancelOrderButtonConfig : { classList : ["order-page-cancel-order-button"], type : 'button', innerText : 'Cancel Order'}
 }
 
 export const tagGroupConfig = {

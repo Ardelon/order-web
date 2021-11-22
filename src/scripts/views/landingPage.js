@@ -35,7 +35,7 @@ const landingPage = () => {
     if (tableList && tableList.length) {
         tableList.forEach(tableId => {
             const table = getTable(tableId);
-            landingPageBodyTableList.appendChild(tableElement(table));            
+            landingPageBodyTableList.appendChild(tableElement(table)); 
         });
     }
 

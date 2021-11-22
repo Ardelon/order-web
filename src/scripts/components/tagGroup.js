@@ -4,7 +4,7 @@ import orderElement from './orderElement';
 import { getTableTagOrders } from "../../store/tagManagers";
 import { getOrder } from "../../store/orderManagers";
 
-const tagGroup = (orderList, tag) => {
+const tagGroup = (table, tag) => {
 
     //#region //* Constants
 
@@ -15,6 +15,8 @@ const tagGroup = (orderList, tag) => {
         tagGroupBodyConfig,
 
     } = tagGroupConfig
+
+    const {orderList } = table
 
     //#endregion
 
@@ -31,9 +33,9 @@ const tagGroup = (orderList, tag) => {
         console.log(orderList);
         orderList.forEach(orderId => {
             const order = getOrder(orderId)
+            console.log(order);
             if (tag === order.tag) {
-
-                tagGroupBody.appendChild(orderElement(order));
+                tagGroupBody.appendChild(orderElement(table, order));
             }
         });
     }

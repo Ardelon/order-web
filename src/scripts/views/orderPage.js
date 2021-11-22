@@ -66,14 +66,20 @@ const orderPage = (table, order = {}) => {
         const tag = orderPageBodyTagInput.value;
 
         if (name && price && tag && typeof(price) === 'number') {
-            const id = idGenerator()
+            let {id} = order;
+
+            if (!id) {
+                id = idGenerator();
+            }
+            
             const model = {
                 id,
                 name,
                 price,
                 tag,
                 createDate : Date.now(),
-                updateDate : Date.now(),                
+                updateDate : Date.now(),      
+                status : 'notPaid'          
             }
             const tableId = table.id;
             addOrder(tableId, model);
